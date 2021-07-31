@@ -32,7 +32,7 @@
                     <input type="hidden" class="span1" value="<?=$barang->harga?>" name="h" placeholder="1">
                     <input type="hidden" class="span1" name="w" value="<?=$barang->berat?>" placeholder="1">
                     <input type="hidden" class="span1" name="b" value="<?=$barang->id_barang?>" placeholder="1">
-                    <a href="https://wa.me/6285893899094?text=Pak,%20saya%20ingin%20membeli%20nomor%20 <?=$barang->n_barang?> %20ini,%20apakah%20masih%20tersedia%20?" target="_blank"><button class="btn btn-inverse" type="submit">Beli Nomor Cantik</button></a>
+                    <a href="https://wa.me/<?= preg_replace("/ |-/","",$config->hp) ?>?text=Pak,%20saya%20ingin%20membeli%20nomor%20 <?=$barang->n_barang?> %20ini,%20apakah%20masih%20tersedia%20?" target="_blank"><button class="btn btn-inverse" type="submit">Beli Nomor Cantik</button></a>
                     <br>
                     <br>
                     <ul class="nav nav-tabs" id="myTab">
