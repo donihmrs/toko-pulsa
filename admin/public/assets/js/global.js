@@ -1,0 +1,1 @@
+const baseUrl = location.protocol + "//" + document.location.hostname + "/";
