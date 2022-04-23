@@ -5,8 +5,8 @@
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-12">
 				<!-- Start Single Product -->
-				<div class="single-product">
-					<table id="tableNomorCantik" class="table table-hover table-responsive">
+				<div class="single-product table-responsive ">
+					<table id="tableNomorCantik" class="table table-success table-striped">
 						<thead>
 							<th>No</th>
 							<th>Nomor Cantik</th>
