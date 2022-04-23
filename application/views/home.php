@@ -20,16 +20,14 @@
 							<th>Nomor Cantik</th>
 							<th>Operator</th>
 							<th>Harga</th>
-							<th></th>
 						</thead>
 						<tbody>
 						<?php foreach($b_new as $key => $value) { ?>
 							<tr>
 								<td><?= $key + 1 ?></td>
-								<td><?= $value->n_barang?></td>
-								<td><?=$value->n_kategori?></td>
-								<td>Rp. <?= number_format($value->harga)?></td>
-								<td><a href='https://api.whatsapp.com/send?phone=6285777038748&text=Hallo, saya ingin membeli nomor <?= $value->n_barang?>, Apakah masih tersedia ? ' target='_blank'><button class="btn btn-sm btn-primary">Beli</button></a></td>
+								<td><a href='https://api.whatsapp.com/send?phone=6285777038748&text=Hallo, saya ingin membeli nomor <?= $value->n_barang?>, Apakah masih tersedia ? ' target='_blank'><?= $value->n_barang?></a></td>
+								<td><a href='<?=base_url()?>produk/<?=$value->n_kategori?>'><?=$value->n_kategori?></a></td>
+								<td><a href='https://api.whatsapp.com/send?phone=6285777038748&text=Hallo, saya ingin membeli nomor <?= $value->n_barang?>, Apakah masih tersedia ? ' target='_blank'>Rp. <?= number_format($value->harga)?></a></td>
 							</tr>
 						<?php } ?>
 						</tbody>
