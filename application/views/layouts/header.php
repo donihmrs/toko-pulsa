@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="<?php echo asset_url();?>css/main.css" />
     <link rel="stylesheet" href="<?php echo asset_url();?>css/custom.css" />
 
-    <script src="<?php echo asset_url();?>vendor/jquery/jquery-3.6.0.min.js" async></script>
+    <script src="<?php echo asset_url();?>vendor/jquery/jquery-3.6.0.min.js"></script>
 
 </head>
 
