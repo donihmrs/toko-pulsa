@@ -307,7 +307,7 @@ class Barang extends CI_Controller {
 				$permalink = preg_replace("/ |\'|\"/i","-",$sheetData[$i]['1']);
 				$metaDeskripsi = htmlspecialchars($sheetData[$i]['1'],ENT_QUOTES);
 				$deskripsi = htmlspecialchars($sheetData[$i]['1'],ENT_QUOTES);
-				$harga = 0;
+				$harga = $sheetData[$i]['4'];
 				$code = $sheetData[$i]['0'];
 				$data[] = array(
 					'n_barang'  => $nama,
