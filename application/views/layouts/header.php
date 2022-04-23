@@ -1,95 +1,144 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+<html class="no-js" lang="en">
 
-  <?php if ($title == "Detail Alat/Mesin") { ?>
-    <title><?=$config->n_perusahaan?> | <?=$barang->n_barang?></title>
-    <meta content='<?= preg_replace("/<p>|<\/p>/i","",htmlspecialchars_decode($barang->keyword))?>' name="keywords" />
-    <meta content='<?= preg_replace("/<p>|<\/p>/i","",htmlspecialchars_decode($barang->meta_deskripsi))?>' name="description" />
-    <meta content='<?= preg_replace("/<p>|<\/p>/i","",htmlspecialchars_decode($barang->meta_title))?>' property="og:title" />
-    <meta content='<?= preg_replace("/<p>|<\/p>/i","",htmlspecialchars_decode($barang->meta_deskripsi))?>' property="og:description" />
-    <meta content='<?=base_url()?>public/image/<?=$barang->gambar?>' property="og:image" />
-    <meta content='<?=base_url()?>produk/view/<?=$barang->permalink?>' property="og:url" />
-    <meta content='website' property="og:type" />
-    <meta content='image/jpg' property="og:image:type" />
-  <?php } else { ?>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title><?=$config->n_perusahaan?> | <?=$title?></title>
-    <meta content='jual,dress,busana,murah,jakarta,jabodetabek' name="keywords" />
-    <meta content='Jual Berbagai Busana murah seperti dress, kaos, celaka di jabodetabek' name="description" />
-    <meta content='<?=$config->n_perusahaan?> - Jual Busana Modern' property="og:title" />
-    <meta content='<?=$config->n_perusahaan?> - Menjual Berbagai Busana Modern' property="og:description" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/x-icon" href="<?=base_url()?>favicon.ico" />
+    <meta content='jual,nomor,cantik,telkomsel,murah,jakarta,jabodetabek,indonesia' name="keywords" />
+    <meta content='Jual nomor cantik telkomsel dengan harga merah seluruh indonesia' name="description" />
+    <meta content='<?=$config->n_perusahaan?> - Jual Nomor Cantik Telkomsel' property="og:title" />
+    <meta content='<?=$config->n_perusahaan?> - Jual Nomor Cantik Telkomsel Murah Seluruh Indonesia' property="og:description" />
     <meta content='<?=base_url()?>public/image/<?=$config->logo?>' property="og:image" />
     <meta content='<?=base_url()?>' property="og:url" />
     <meta content='website' property="og:type" />
     <meta content='image/jpg' property="og:image:type" />
-  <?php } ?>
 
-  <!-- Favicon -->
-  <link href="<?=base_url()?>favicon.ico" rel="shortcut icon"/>
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="<?php echo asset_url();?>css/bootstrap.min.css" />
+    <link rel="stylesheet" href="<?php echo asset_url();?>css/LineIcons.3.0.css" />
+    <link rel="stylesheet" href="<?php echo asset_url();?>css/tiny-slider.css" />
+    <link rel="stylesheet" href="<?php echo asset_url();?>css/glightbox.min.css" />
+    <link rel="stylesheet" href="<?php echo asset_url();?>css/main.css" />
+    <link rel="stylesheet" href="<?php echo asset_url();?>css/custom.css" />
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
+    <script src="<?php echo asset_url();?>vendor/jquery/jquery-3.6.0.min.js" async></script>
 
-  <!-- bootstrap -->
-  <link href="<?php echo asset_url();?>shopper/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">      
-  <link href="<?php echo asset_url();?>shopper/plugins/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-  
-  <link href="<?php echo asset_url();?>shopper/css/bootstrappage.css" rel="stylesheet"/>
-  <link href="<?php echo asset_url();?>shopper/css/custom.css" rel="stylesheet"/>
-  
-  <!-- global styles -->
-  <link href="<?php echo asset_url();?>shopper/css/flexslider.css" rel="stylesheet"/>
-  <link href="<?php echo asset_url();?>shopper/css/main.css" rel="stylesheet"/>
-  <link href="<?php echo asset_url();?>shopper/css/jquery.fancybox.css" rel="stylesheet"/>
-
-  <!-- Jquery -->
-  <script src="<?php echo asset_url();?>shopper/js/jquery-1.7.2.min.js"></script>
-  <script src="<?php echo asset_url();?>shopper/js/superfish.js"></script>	
-  <script src="<?php echo asset_url();?>shopper/js/global.js"></script>
 </head>
+
 <body>
-  <span id='templatedirectory' style="display:none">http://<?php echo $_SERVER['HTTP_HOST']?>/tokotdc</span>
-  <div id="top-bar" class="container">
-    <div class="row">
-      <div class="span3">
-        <form method="GET" action="<?=base_url()?>search" class="search_form">
-          <input type="text" name="q" class="input-block-level search-query text-dark" Placeholder="eg. Nama Produk">
-        </form>
-      </div>
-      <div class="span3">
-          <!-- <input type="text" id="checkTransaksi" class="input-block-level search-query text-dark" Placeholder="Eg. Nomor Transaksi">          -->
-      </div>
-      <div class="span6">
-        <div class="account pull-right">
-          <ul class="user-menu">				
-            <li><a href="<?=base_url()?>">Home</a></li>
-            <li><a href="<?=base_url()?>contact">Hubungi Kami</a></li>
-            <li><a href="<?=base_url()?>about">Tentang Kami</a></li>
-          </ul>
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <div id="loadingDiv" style="z-index:1000;top:40%;left:48%;position:fixed;display:none">
-    <img src="<?=base_url()?>public/image/loading.gif">
-    <h5>Get Data . . .</h5>
-  </div>
-  
-  <!--================Header Menu Area =================-->
-    <div id="wrapper" class="container">
-			<section class="navbar main-menu">
-				<div class="navbar-inner main-menu">				
-					<a href="<?=base_url()?>" class="logo pull-left"><img width="100" src="<?=base_url()?>public/image/<?=$config->logo?>" class="site_logo" alt="<?=$config->n_perusahaan?>"></a>
-					<nav id="menu" class="pull-right m-top7">
-            <ul>
-              <?php foreach ($menuproduk as $key => $value) { ?>
-                <li><a href="<?=base_url()?>produk/<?=str_replace(" ","-",$value->n_kategori)?>"><?= ucfirst($value->n_kategori)?></a></li>
-              <?php } ?>
-            <!-- <li><a href="<?php //echo base_url()?>blog">Blog</a></li> -->
-            </ul>
-					</nav>
-				</div>
-			</section>
+    <!-- /End Preloader -->
+
+    <!-- Start Header Area -->
+    <header class="header navbar-area">
+        <!-- Start Topbar -->
+        <div class="topbar">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="top-left">
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="top-middle">
+                            <ul class="useful-links">
+                              <li><a href="<?=base_url()?>">Home</a></li>
+                              <li><a href="<?=base_url()?>contact">Hubungi Kami</a></li>
+                              <li><a href="<?=base_url()?>about">Tentang Kami</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <!-- <div class="top-end">
+                            <div class="user">
+                                <i class="lni lni-user"></i>
+                                Hello
+                            </div>
+                            <ul class="user-login">
+                                <li>
+                                    <a href="login.html">Sign In</a>
+                                </li>
+                                <li>
+                                    <a href="register.html">Register</a>
+                                </li>
+                            </ul>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Topbar -->
+        <!-- Start Header Middle -->
+        <div class="header-middle">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-3 col-md-3 col-7">
+                        <!-- Start Header Logo -->
+                        <a class="navbar-brand" href="index.html">
+                          <img src="<?php echo base_url();?>public/image/<?=$top?>" alt="Logo" />
+                        </a>
+                        <!-- End Header Logo -->
+                    </div>
+                    <div class="col-lg-5 col-md-7 d-xs-none">
+                        <!-- Start Main Menu Search -->
+                        <div class="main-menu-search">
+                            <!-- navbar search start -->
+                            <div class="navbar-search search-style-5">
+                                <div class="search-select">
+                                    <div class="select-position">
+                                        <select id="select1">
+                                            <option selected>All</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="search-input">
+                                  <form id="formSearch" method="GET" action="<?=base_url()?>search" class="search_form">
+                                    <input type="text" name="q" Placeholder="contoh, 0812">
+                                  </form>
+                                </div>
+                                <div class="search-btn">
+                                    <button type="submit" form="formSearch"><i class="lni lni-search-alt"></i></button>
+                                </div>
+                            </div>
+                            <!-- navbar search Ends -->
+                        </div>
+                        <!-- End Main Menu Search -->
+                    </div>
+                    <div class="col-lg-4 col-md-2 col-5">
+                        <div class="middle-right-area">
+                            <div class="nav-hotline">
+                                <i class="lni lni-phone"></i>
+                                <h3>Hotline:
+                                    <span><?=$config->phone?> / <?=$config->hp?></span>
+                                </h3>
+                            </div>
+                            <div class="navbar-cart">
+
+              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        

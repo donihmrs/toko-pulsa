@@ -1,85 +1,122 @@
-	<section id="footer-bar">
-		<div class="row">
-			<div class="span3 text-white">
-				<h4>Hubungi Kami</h4>
-				<div class="">
-					<span><i class="fa fa-home"></i></span>
-					<p><?=$config->n_perusahaan?></p>
-				</div>
-				<div class="">
-					<span><i class="fa fa-building-o"></i></span>
-					<p><?=$config->alt_perusahaan?></p>
-				</div>
-				<div class="">
-					<span><i class="fa fa-phone"></i></span>
-					<p><?=$config->phone?> / <?=$config->hp?></p>
-				</div>
-				<div class="">
-					<span><i class="fa fa-envelope"></i></span>
-					<p><?=$config->email?></p>
-				</div>	
-			</div>
-			<div class="span3">
-				<h4>Web Menu</h4>
-				<ul class="nav">
-					<li><a href="<?=base_url()?>produk">Our Produk</a></li>
-					<li><a href="<?=base_url()?>contact">Hubungi Kami</a></li>
-					<li><a href="<?=base_url()?>about">Tentang Kami</a></li>
-				</ul>
-			</div>
-			<div class="span3">
-				<h4>Media Sosial</h4>
-				<span class="">
-					<?php foreach ($medias as $value) { ?>
-						<a target="_blank" href="<?=$value->link?>" class="<?=$value->type?>"><i class="fa fa-<?=$value->type?>"></i><span><?=$value->type?></span></a>
-					<?php } ?>
-				</span>
-			</div>
-			<div class="span3">
-				<p class="logo"><img src="<?=base_url()?>public/image/<?=$config->logo?>" class="site_logo" alt=""></p>
-				<br/>
-				
-			</div>					
-		</div>	
-	</section>
-	<section id="copyright">
-		<span>Copyright @ 2020 - <?= date('Y') ?> - Powered By <?=$config->n_perusahaan?> | DoniHMRs.</span>
-	</section>
-</div>
-<!-- Footer section end -->
-<!--====== Javascripts ======-->
-<script src="<?php echo asset_url();?>shopper/plugins/bootstrap/js/bootstrap.min.js" async></script>				
-<script src="<?php echo asset_url();?>shopper/js/jquery.scrolltotop.js" async></script>	
-<script src="<?php echo asset_url();?>shopper/js/common.js"></script>
-<script src="<?php echo asset_url();?>shopper/js/jquery.fancybox.js"></script>
-<script src="<?php echo asset_url();?>shopper/js/jquery.flexslider-min.js"></script>
-<script type="text/javascript">
-	$(function() {
-		$(document).ready(function() {
-			$('.flexslider').flexslider({
-				animation: "fade",
-				slideshowSpeed: 4000,
-				animationSpeed: 600,
-				controlNav: false,
-				directionNav: true,
-				controlsContainer: ".flex-container" // the container that holds the flexslider
-			});
-		});
+<!-- Start Footer Area -->
+<footer class="footer">
+        <!-- Start Footer Middle -->
+        <div class="footer-middle">
+            <div class="container">
+                <div class="bottom-inner">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <!-- Single Widget -->
+                            <div class="single-footer f-contact">
+                                <h3>Hubungi Kami</h3>
+                                <p class="phone"><?=$config->phone?> / <?=$config->hp?></p>
+                                <ul>
+                                    <li><span><?=$config->n_perusahaan?></span></li>
+                                    <li><span><?=$config->alt_perusahaan?></span></li>
+                                </ul>
+                                <p class="mail">
+									<?=$config->email?>
+                                </p>
+                            </div>
+                            <!-- End Single Widget -->
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <!-- Single Widget -->
+                            <div class="single-footer f-link">
+                                <h3>Information</h3>
+                                <ul>
+									<li><a href="<?=base_url()?>">Home</a></li>
+									<li><a href="<?=base_url()?>contact">Hubungi Kami</a></li>
+									<li><a href="<?=base_url()?>about">Tentang Kami</a></li>
+                                </ul>
+                            </div>
+                            <!-- End Single Widget -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Footer Middle -->
+        <!-- Start Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="inner-content">
+                    <div class="row align-items-center">
+                        <div class="col-lg-8 col-12">
+                            <div class="copyright">
+                                <p>Designed and Developed by GrayGrids - @Copyright 2022 - <?php echo date("Y") ?> - Powered By <?=$config->n_perusahaan?> | DoniHMRs</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                            <ul class="socila">
+                                <li>
+                                    <span>Follow Us On:</span>
+                                </li>
+								<?php foreach ($medias as $value) { ?>
+									<li>
+										<a target="_blank" href="<?=$value->link?>" class="<?=$value->type?>"><i class="lineHeight2-5 lni lni-<?=$value->type?>-filled"></i></a>
+									</li>
+								<?php } ?>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Footer Bottom -->
+    </footer>
+    <!--/ End Footer Area -->
 
-		var inputCheckTransaksi = document.getElementById("checkTransaksi");
+    <!-- ========================= scroll-top ========================= -->
+    <a href="#" class="scroll-top">
+        <i class="lni lni-chevron-up"></i>
+    </a>
 
-		inputCheckTransaksi.addEventListener("keyup", function(event) {
-		// Number 13 is the "Enter" key on the keyboard
-		if (event.keyCode === 13) {
-			// Cancel the default action, if needed
-			event.preventDefault();
-			// Trigger the button element with a click
-			var valTransaksi = $("#checkTransaksi").val();
-			window.location.href = docRoot+"transaksi/"+valTransaksi
-		}
-		});
-	});
-</script>
+    <!-- ========================= JS here ========================= -->
+    <script src="<?php echo asset_url();?>/js/bootstrap.min.js"></script>
+    <script src="<?php echo asset_url();?>/js/tiny-slider.js"></script>
+    <script src="<?php echo asset_url();?>/js/glightbox.min.js"></script>
+    <script src="<?php echo asset_url();?>/js/main.js"></script>
+    <script type="text/javascript">
+        //========= Hero Slider 
+        tns({
+            container: '.hero-slider',
+            slideBy: 'page',
+            autoplay: true,
+            autoplayButtonOutput: false,
+            mouseDrag: true,
+            gutter: 0,
+            items: 1,
+            nav: false,
+            controls: true,
+            controlsText: ['<i class="lni lni-chevron-left"></i>', '<i class="lni lni-chevron-right"></i>'],
+        });
 
+        //======== Brand Slider
+        tns({
+            container: '.brands-logo-carousel',
+            autoplay: true,
+            autoplayButtonOutput: false,
+            mouseDrag: true,
+            gutter: 15,
+            nav: false,
+            controls: false,
+            responsive: {
+                0: {
+                    items: 1,
+                },
+                540: {
+                    items: 3,
+                },
+                768: {
+                    items: 5,
+                },
+                992: {
+                    items: 6,
+                }
+            }
+        });
+    </script>
 </body>
+
 </html>

@@ -295,31 +295,31 @@ class Barang extends CI_Controller {
 			$sheetData = $spreadsheet->getActiveSheet()->toArray();
 			for($i = 1;$i < count($sheetData);$i++)
 			{	
-				// $rowName = $sheetData[$i]['0'];
-				// $idKategori = $this->kategori_model->getKategori_name($rowName);
-				// if ($idKategori->num_rows() != 0) {
-				// 	$idKategori = $idKategori->first_row();
-				// 	$kategori = $idKategori->id_kategori;
-				// } else {
-				// 	$kategori = 1;
-				// }
-				$nama = $sheetData[$i]['0'];
+				$rowName = $sheetData[$i]['3'];
+				$idKategori = $this->kategori_model->getKategori_name($rowName);
+				if ($idKategori->num_rows() != 0) {
+					$idKategori = $idKategori->first_row();
+					$kategori = $idKategori->id_kategori;
+				} else {
+					$kategori = 1;
+				}
+				$nama = $sheetData[$i]['1'];
 				$permalink = preg_replace("/ |\'|\"/i","-",$sheetData[$i]['1']);
-				$metaDeskripsi = htmlspecialchars($sheetData[$i]['2'],ENT_QUOTES);
-				$deskripsi = htmlspecialchars($sheetData[$i]['3'],ENT_QUOTES);
+				$metaDeskripsi = htmlspecialchars($sheetData[$i]['1'],ENT_QUOTES);
+				$deskripsi = htmlspecialchars($sheetData[$i]['1'],ENT_QUOTES);
 				$harga = 0;
-				$code = $sheetData[$i]['5'];
+				$code = $sheetData[$i]['0'];
 				$data[] = array(
 					'n_barang'  => $nama,
 					'code'    => $code,
 					'harga'  => $harga,
 					'deskripsi'  => $deskripsi,
-					'id_kategori'   => 1,
+					'id_kategori'   => $kategori,
 					'feature' => 0,
-					'meta_deskripsi' => $metaDeskripsi,
-					'keyword' => 'jual,murah,online',
-					'meta_title' => 'Jual Berbagai Barang yaitu '.$nama,
-					'gambar' => 'image.jpg'
+					'meta_deskripsi' => "",
+					'keyword' => 'jual,nomor,cantik,murah,online,'.$rowName.','.$nama,
+					'meta_title' => 'Jual Nomor Cantik '.$nama.' - Operator : '.$rowName,
+					'gambar' => ''
 				);
 			}
 

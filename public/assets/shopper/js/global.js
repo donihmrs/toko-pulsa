@@ -1,1 +1,0 @@
-var docRoot = location.protocol + "//" + document.location.hostname+"/tokotdc/";

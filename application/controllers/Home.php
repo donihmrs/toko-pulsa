@@ -31,8 +31,8 @@ class Home extends CI_Controller {
 		$data['config'] = $this->config_model->getConfig();
 		$data['medias'] = $this->media_model->getData();
 		$data['b_feature'] = $this->barang_model->getFeature();
-		$data['b_new'] = $this->barang_model->getNew();
-		$data['kategoris'] = $this->barang_model->AllkategoriLimit(6)->result();
+		$data['b_new'] = $this->barang_model->getAll()->result();
+		$data['kategoris'] = $this->barang_model->Allkategori(6)->result();
 		$data['menuproduk'] = $this->barang_model->Allkategori()->result();
 		
 		$this->load->view('layouts/header',$data);

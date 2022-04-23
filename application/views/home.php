@@ -1,140 +1,53 @@
-<section class="main-content">
-	<div class="row">
-		<div class="span12">													
-			<div class="row">
-				<div class="span12">
-					<h4 class="title">
-						<span class="pull-left"><span class="text"><span class="line">Feature <strong>Products</strong></span></span></span>
-						<span class="pull-right">
-							<a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
-						</span>
-					</h4>
-					<?php $no = 0; ?>
-					<div id="myCarousel" class="myCarousel carousel slide">
-						<div class="carousel-inner">
-							<div class="active item">
-							<ul class="thumbnails">	
-								<?php foreach ($b_feature as $key => $value) { ?>	
-									<?php if ($key < 5) { ?>								
-									<li class="span2">
-										<div class="product-box">
-											<span class="sale_tag"></span>
-											<p><a href="<?=base_url()?>produk/view/<?=$value->permalink?>"><img style="height:100px" class="height" src="<?=base_url()?>public/image/<?=$value->gambar?>" alt="<?= str_replace(" ","-",$value->n_barang)?>" /></a></p>
-											<a href="<?=base_url()?>produk/view/<?=$value->permalink?>" class="title"><?=$value->n_barang?></a><br/>
-											<a href="<?=base_url()?>produk/view/<?=$value->permalink?>" class="category"><?=$value->n_kategori?></a>
-											<p class="price">Rp. <?= number_format($value->harga)?></p>
-										</div>
-									</li>
-									<?php } ?>
-								<?php } ?>
-							</ul>
-							</div>
-
-							<div class="item">
-							<ul class="thumbnails">	
-								<?php foreach ($b_feature as $key => $value) { ?>	
-									<?php if ($key > 5 && $key < 10) { ?>								
-									<li class="span2">
-										<div class="product-box">
-											<span class="sale_tag"></span>
-											<p><a href="<?=base_url()?>produk/view/<?=$value->permalink?>"><img style="height:100px" class="height" src="<?=base_url()?>public/image/<?=$value->gambar?>" alt="<?= str_replace(" ","-",$value->n_barang)?>" /></a></p>
-											<a href="<?=base_url()?>produk/view/<?=$value->permalink?>" class="title"><?=$value->n_barang?></a><br/>
-											<a href="<?=base_url()?>produk/view/<?=$value->permalink?>" class="category"><?=$value->n_kategori?></a>
-											<p class="price">Rp. <?= number_format($value->harga)?></p>
-										</div>
-									</li>
-									<?php } ?>
-								<?php } ?>
-							</ul>
-							</div>
-						</div>							
-					</div>
-				</div>						
-			</div>
-			<br/>
-			<div class="row">
-				<div class="span12">
-					<h4 class="title">
-						<span class="pull-left"><span class="text"><span class="line">Latest <strong>Products</strong></span></span></span>
-						<span class="pull-right">
-							<a class="left button" href="#myCarousel-2" data-slide="prev"></a><a class="right button" href="#myCarousel-2" data-slide="next"></a>
-						</span>
-					</h4>
-					<div id="myCarousel-2" class="myCarousel carousel slide">
-						<div class="carousel-inner">
-							<div class="active item">
-								<ul class="thumbnails">												
-								<?php foreach($b_new as $key => $value) { ?>
-									<?php if ($key < 10) { ?>
-									<li class="span2">
-										<div class="product-box">
-											<span class="sale_tag"></span>
-											<p><a href="<?=base_url()?>produk/view/<?=$value->permalink?>"><img style="height:100px" class="height" src="<?=base_url()?>public/image/<?=$value->gambar?>" alt="<?= str_replace(" ","-",$value->n_barang)?>" /></a></p>
-											<a href="<?=base_url()?>produk/view/<?=$value->permalink?>" class="title"><?=$value->n_barang?></a><br/>
-											<a href="<?=base_url()?>produk/view/<?=$value->permalink?>" class="category"><?=$value->n_kategori?></a>
-											<p class="price">Rp. <?= number_format($value->harga)?></p>
-										</div>
-									</li>
-									<?php } ?>
-								<?php } ?>
-								</ul>
-							</div>
-							<div class="item">
-								<ul class="thumbnails">												
-								<?php foreach($b_new as $key => $value) { ?>
-									<?php if ($key > 10 && $key < 20) { ?>
-									<li class="span2">
-										<div class="product-box">
-											<span class="sale_tag"></span>
-											<p><a href="<?=base_url()?>produk/view/<?=$value->permalink?>"><img class="height" style="height:100px" src="<?=base_url()?>public/image/<?=$value->gambar?>" alt="<?= str_replace(" ","-",$value->n_barang)?>" /></a></p>
-											<a href="<?=base_url()?>produk/view/<?=$value->permalink?>" class="title"><?=$value->n_barang?></a><br/>
-											<a href="<?=base_url()?>produk/view/<?=$value->permalink?>" class="category"><?=$value->n_kategori?></a>
-											<p class="price">Rp. <?= number_format($value->harga)?></p>
-										</div>
-									</li>
-									<?php } ?>
-								<?php } ?>
-								</ul>
-							</div>
-						</div>							
-					</div>
-				</div>						
-			</div>
-			<div class="row feature_box">						
-				<div class="span4">
-					<div class="service">
-						<div class="responsive">	
-							<?php if (isset($templatefooterleft)) { ?>
-								<img src="<?php echo asset_url();?>shopper/images/feature_img_2.png" alt="" />
-								<h4><?=html_entity_decode($templatefooterleft->title)?></h4>
-								<p><?=html_entity_decode($templatefooterleft->body)?></p>		
-							<?php } ?>							
-						</div>
-					</div>
+<link rel="stylesheet" href="<?php echo asset_url();?>/vendor/datatables/datatables.min.css" />
+<!-- Start Trending Product Area -->
+<section class="trending-product section" style="margin-top: 12px;">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="section-title">
+					<h2>Nomor Cantik</h2>
+					<p>Berbagai nomor cantik yang kami jual dengan harga termurah</p>
 				</div>
-				<div class="span4">	
-					<div class="service">
-						<div class="customize">			
-							<?php if (isset($templatefootercenter)) { ?>
-								<img src="<?php echo asset_url();?>shopper/images/feature_img_1.png" alt="" />
-								<h4><?=html_entity_decode($templatefootercenter->title)?></h4>
-								<p><?=html_entity_decode($templatefootercenter->body)?></p>
-							<?php } ?>
-						</div>
-					</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-12">
+				<!-- Start Single Product -->
+				<div class="single-product">
+					<table id="tableNomorCantik" class="table table-hover table-responsive">
+						<thead>
+							<th>No</th>
+							<th>Nomor Cantik</th>
+							<th>Operator</th>
+							<th>Harga</th>
+							<th></th>
+						</thead>
+						<tbody>
+						<?php foreach($b_new as $key => $value) { ?>
+							<tr>
+								<td><?= $key + 1 ?></td>
+								<td><?= $value->n_barang?></td>
+								<td><?=$value->n_kategori?></td>
+								<td>Rp. <?= number_format($value->harga)?></td>
+								<td><a href='https://api.whatsapp.com/send?phone=6285777038748&text=Hallo, saya ingin membeli nomor <?= $value->n_barang?>, Apakah masih tersedia ? ' target='_blank'><button class="btn btn-sm btn-primary">Beli</button></a></td>
+							</tr>
+						<?php } ?>
+						</tbody>
+					</table>
 				</div>
-				<div class="span4">
-					<div class="service">
-						<div class="support">	
-							<?php if (isset($templatefooterright)) { ?>
-								<img src="<?php echo asset_url();?>shopper/images/feature_img_3.png" alt="" />
-								<h4><?=html_entity_decode($templatefooterright->title)?></h4>
-								<p><?=html_entity_decode($templatefooterright->body)?></p>
-							<?php } ?>
-						</div>
-					</div>
-				</div>	
-			</div>		
-		</div>				
+				<!-- End Single Product -->
+			</div>
+		</div>
 	</div>
 </section>
+<!-- End Trending Product Area -->
+
+<script src="<?php echo asset_url();?>/vendor/datatables/datatables.min.js"></script>
+
+<script type="text/javascript" defer>
+	$(document).ready( function () {
+		$('#tableNomorCantik').DataTable({
+			"pageLength": 25
+		});
+	} );
+</script>

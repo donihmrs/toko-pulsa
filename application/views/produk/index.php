@@ -1,60 +1,45 @@
-<section class="header_text sub">
-	<h4><span>All products</span></h4>
-</section>
-<section class="main-content">
-	<div class="row">						
-		<div class="span10">								
-			<ul class="thumbnails listing-products">
-			<?php foreach($barang as $key => $value) { ?>
-				<li class="span2">
-					<div class="product-box">
-						<span class="sale_tag"></span>												
-						<p><a href="<?=base_url()?>produk/view/<?=$value->permalink?>"><img style="height:100px" src="<?=base_url()?>public/image/<?=$value->gambar?>" alt="<?= str_replace(" ","-",$value->n_barang)?>" /></a></p>
-						<a href="<?=base_url()?>produk/view/<?=$value->permalink?>" class="title"><?=$value->n_barang?></a><br/>
-						<a href="<?=base_url()?>produk/view/<?=$value->permalink?>" class="category"><?=$value->n_kategori?></a>
-						<p class="price">Rp. <?= number_format($value->harga)?></p>
-					</div>
-				</li>
-			<?php } ?>
-			</ul>								
-			<hr>
-			<!-- <div class="pagination pagination-small pagination-centered">
-				<ul>
-					<li><a href="#">Prev</a></li>
-					<li class="active"><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">Next</a></li>
-				</ul>
-			</div> -->
-		</div>
-		<div class="span2 col">
-			<div class="block">	
-                <ul class="nav nav-list">
-                    <li class="nav-header">Others Category</li>
-                    <?php foreach ($menuproduk as $key => $value) { ?>
-                    <li>
-                        <a href="<?=base_url()?>produk/<?=str_replace(" ","-",$value->n_kategori)?>"><?= ucfirst($value->n_kategori)?></a>
-                    </li>
-                    <?php } ?>
-                </ul>
-            </div>
-            <div class="block">								
-                <h4 class="title"><strong>Latest</strong> Product</h4>								
-                <ul class="small-product">
-                <?php foreach($b_new as $key => $value) { ?>
-                    <?php if ($key < 5) { ?>
-                    <li>
-                        <a href="<?=base_url()?>produk/view/<?=$value->permalink?>" title="<?= $value->n_barang?>">
-                            <img src="<?=base_url()?>public/image/<?=$value->gambar?>" alt="<?= str_replace(" ","-",$value->n_barang)?>">
-                        </a>
-                        <a href="<?=base_url()?>produk/view/<?=$value->permalink?>"><?= $value->n_barang?></a>
-                    </li>
-                    <?php } ?>
-                <?php } ?>
-                </ul>
-            </div>
+<link rel="stylesheet" href="<?php echo asset_url();?>/vendor/datatables/datatables.min.css" />
+<!-- Start Trending Product Area -->
+<section class="trending-product section" style="margin-top: 12px;">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-12">
+				<!-- Start Single Product -->
+				<div class="single-product">
+					<table id="tableNomorCantik" class="table table-hover table-responsive">
+						<thead>
+							<th>No</th>
+							<th>Nomor Cantik</th>
+							<th>Operator</th>
+							<th>Harga</th>
+							<th></th>
+						</thead>
+						<tbody>
+						<?php foreach($barang as $key => $value) { ?>
+							<tr>
+								<td><?= $key + 1 ?></td>
+								<td><?= $value->n_barang?></td>
+								<td><?=$value->n_kategori?></td>
+								<td>Rp. <?= number_format($value->harga)?></td>
+								<td><a href='https://api.whatsapp.com/send?phone=6285777038748&text=Hallo, saya ingin membeli nomor <?= $value->n_barang?>, Apakah masih tersedia ? ' target='_blank'><button class="btn btn-sm btn-primary">Beli</button></a></td>
+							</tr>
+						<?php } ?>
+						</tbody>
+					</table>
+				</div>
+				<!-- End Single Product -->
+			</div>
 		</div>
 	</div>
 </section>
+<!-- End Trending Product Area -->
+
+<script src="<?php echo asset_url();?>/vendor/datatables/datatables.min.js"></script>
+
+<script type="text/javascript" defer>
+	$(document).ready( function () {
+		$('#tableNomorCantik').DataTable({
+			"pageLength": 25
+		});
+	} );
+</script>
