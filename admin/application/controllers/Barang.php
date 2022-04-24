@@ -5,6 +5,8 @@ require 'vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Reader\Csv;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx as writerXlsx;
+
 
 class Barang extends CI_Controller {
 
@@ -306,6 +308,7 @@ class Barang extends CI_Controller {
 				$nama = $sheetData[$i]['1'];
 				$permalink = preg_replace("/ |\'|\"/i","-",$sheetData[$i]['1']);
 				$metaDeskripsi = htmlspecialchars($sheetData[$i]['1'],ENT_QUOTES);
+				$kodeBox = htmlspecialchars($sheetData[$i]['2'],ENT_QUOTES);
 				$deskripsi = htmlspecialchars($sheetData[$i]['1'],ENT_QUOTES);
 				$harga = $sheetData[$i]['4'];
 				$code = $sheetData[$i]['0'];
@@ -316,6 +319,7 @@ class Barang extends CI_Controller {
 					'deskripsi'  => $deskripsi,
 					'id_kategori'   => $kategori,
 					'feature' => 0,
+					'kode_box' => $kodeBox,
 					'meta_deskripsi' => "",
 					'keyword' => 'jual,nomor,cantik,murah,online,'.$rowName.','.$nama,
 					'meta_title' => 'Jual Nomor Cantik '.$nama.' - Operator : '.$rowName,
@@ -332,6 +336,86 @@ class Barang extends CI_Controller {
 				redirect('barang','refresh');
 			}
 		} 
+	}
+
+	function export() {
+		if ($this->session->userdata('level') != 1) {
+            set_cookie('error',"Maaf, anda tidak memiliki akses untuk import barang",5);
+			redirect('barang','refresh');
+		}
+
+
+		$allBarangs = $this->barang_model->getAll();
+
+		if ($allBarangs->num_rows() > 0) { 
+
+			$style_col = [
+				'font' => ['bold' => true], // Set font nya jadi bold
+				'alignment' => [
+					'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
+					'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+				],
+				'borders' => [
+					'top' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border top dengan garis tipis
+					'right' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],  // Set border right dengan garis tipis
+					'bottom' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border bottom dengan garis tipis
+					'left' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN] // Set border left dengan garis tipis
+				]
+			];
+
+			$spreadsheet = new Spreadsheet();
+			$sheet = $spreadsheet->getActiveSheet();
+			$sheet->setCellValue('A1', 'ICCID');
+			$sheet->setCellValue('B1', 'NOMOR');
+			$sheet->setCellValue('C1', 'KODE BOX');
+			$sheet->setCellValue('D1', 'OPERATOR');
+			$sheet->setCellValue('E1', 'HARGA');
+
+			$sheet->getStyle('A1')->applyFromArray($style_col);
+			$sheet->getStyle('B1')->applyFromArray($style_col);
+			$sheet->getStyle('C1')->applyFromArray($style_col);
+			$sheet->getStyle('D1')->applyFromArray($style_col);
+			$sheet->getStyle('E1')->applyFromArray($style_col);
+
+			$row = 2;
+
+			foreach ($allBarangs->result_object() as $key => $value) {
+				$sheet->setCellValue('A' . $row, $value->code);
+				$sheet->setCellValue('B' . $row, $value->n_barang);
+				$sheet->setCellValue('C' . $row, $value->kode_box);
+				$sheet->setCellValue('D' . $row, $value->n_kategori);
+				$sheet->setCellValue('E' . $row, $value->harga);
+
+
+				$row++;
+			}
+
+			$sheet->getColumnDimension('A')->setWidth(32); 
+			$sheet->getColumnDimension('B')->setWidth(20); 
+			$sheet->getColumnDimension('C')->setWidth(12); 
+			$sheet->getColumnDimension('D')->setWidth(15); 
+			$sheet->getColumnDimension('E')->setWidth(15); 
+
+			$sheet->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
+
+			$sheet->setTitle('List-produk-'.date("Y-m-d"));
+
+			header('Pragma: public');
+			header('Expires: 0');
+			header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+			header('Content-Disposition: attachment; filename="List-produk-'.date("Y-m-d").'.xlsx"');
+			header('Cache-Control: max-age=0');
+			
+			$writer = new writerXlsx($spreadsheet);
+			$writer->save('php://output');
+			exit();
+
+			set_cookie('success',"Anda berhasil export data produk ke file excel",5);
+			redirect('barang','refresh');
+		} else {
+			set_cookie('error',"List produk belum tersedia",5);
+			redirect('barang','refresh');
+		}
 	}
 
 	public function uploadGambar($data = null) {

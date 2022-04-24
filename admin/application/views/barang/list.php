@@ -8,9 +8,14 @@
         <div class="card-body">
         <div class="col-12">
             <?php if ($this->session->userdata('level') == 1) { ?>
-                <a href="<?=base_url()?>barang/add">
-                    <button class="btn btn-success">Add <?=$halaman?></button>
-                </a>
+                <div class='row'>
+                    <a href="<?=base_url()?>barang/add">
+                        <button class="btn btn-sm btn-success mr-2">Add <?=$halaman?></button>
+                    </a>
+                    <form enctype="multipart/form-data" action="<?=base_url()?>barang/export" method="get">
+                        <input type="submit" value="Export Excel" class="btn btn-sm btn-success">
+                    </form>
+                </div>
             
                 <div class="float-right">
                     <form enctype="multipart/form-data" action="<?=base_url()?>barang/import" method="post">

@@ -46,10 +46,10 @@
                     $query = $this->db->insert_batch('barang', $data);
                 } else {
                     foreach ($data as $value) {
-                        $query = $this->db->query("INSERT INTO barang (id_kategori,n_barang,code,harga,deskripsi,feature,meta_deskripsi,keyword,meta_title,gambar) 
-                        VALUES (".$value['id_kategori'].",'".$value['n_barang']."','".$value['code']."','".$value['harga']."','".$value['deskripsi']."',".$value['feature'].",'".$value['meta_deskripsi']."','".$value['keyword']."','".$value['meta_title']."','".$value['gambar']."') 
+                        $query = $this->db->query("INSERT INTO barang (id_kategori,n_barang,code,harga,deskripsi,feature,meta_deskripsi,keyword,meta_title,gambar,kode_box) 
+                        VALUES (".$value['id_kategori'].",'".$value['n_barang']."','".$value['code']."','".$value['harga']."','".$value['deskripsi']."',".$value['feature'].",'".$value['meta_deskripsi']."','".$value['keyword']."','".$value['meta_title']."','".$value['gambar']."','".$value['kode_box']."') 
                         ON DUPLICATE KEY UPDATE 
-                        n_barang='".$value['n_barang']."', deskripsi='".$value['deskripsi']."', harga='".$value['harga']."', feature=".$value['feature'].",meta_deskripsi='".$value['meta_deskripsi']."',keyword='".$value['keyword']."',meta_title='".$value['meta_title']."',gambar='".$value['gambar']."'");
+                        n_barang='".$value['n_barang']."', deskripsi='".$value['deskripsi']."', harga='".$value['harga']."', feature=".$value['feature'].",meta_deskripsi='".$value['meta_deskripsi']."',keyword='".$value['keyword']."',meta_title='".$value['meta_title']."',gambar='".$value['gambar']."',kode_box='".$value['kode_box']."'");
                     }
                 }
                 return $query;
